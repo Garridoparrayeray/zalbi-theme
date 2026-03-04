@@ -134,7 +134,7 @@ if ($es_euskera) {
             <div class="options">
                 
                 <a href="<?php echo zalbi_url_filtro($url_catalogo_base, $slug_hinchables); ?>" class="options-box border-pink">
-                    <img src="https://dev-zalbi-aisia-eta-abentura.pantheonsite.io/wp-content/uploads/2026/01/WhatsApp-Image-2026-01-19-at-10.40.18.jpeg" alt="<?php echo $t['cat1_tit']; ?>">
+                    <img src="https://zalbi.eu/wp-content/uploads/2026/03/caida_libre2.webp" alt="<?php echo $t['cat1_tit']; ?>">
                     <div class="card-body">
                         <h3 class="text-pink"><?php echo $t['cat1_tit']; ?></h3>
                         <p><?php echo $t['cat1_desc']; ?></p>
@@ -143,7 +143,7 @@ if ($es_euskera) {
                 </a>
 
                 <a href="<?php echo zalbi_url_filtro($url_catalogo_base, $slug_acuaticos); ?>" class="options-box border-blue">
-                    <img src="https://dev-zalbi-aisia-eta-abentura.pantheonsite.io/wp-content/uploads/2026/01/espuma1.jpeg" alt="<?php echo $t['cat2_tit']; ?>"> 
+                    <img src="https://zalbi.eu/wp-content/uploads/2026/01/espuma1.webp" alt="<?php echo $t['cat2_tit']; ?>"> 
                     <div class="card-body">
                         <h3 class="text-blue"><?php echo $t['cat2_tit']; ?></h3> 
                         <p><?php echo $t['cat2_desc']; ?></p>
@@ -152,7 +152,7 @@ if ($es_euskera) {
                 </a>
 
                 <a href="<?php echo zalbi_url_filtro($url_catalogo_base, $slug_deportivos); ?>" class="options-box border-orange">
-                     <img src="https://dev-zalbi-aisia-eta-abentura.pantheonsite.io/wp-content/uploads/2026/01/WhatsApp-Image-2026-01-19-at-14.48.29.jpeg" alt="<?php echo $t['cat3_tit']; ?>">
+                     <img src="https://zalbi.eu/wp-content/uploads/2026/02/futbolin_1.webp" alt="<?php echo $t['cat3_tit']; ?>">
                     <div class="card-body">
                         <h3 class="text-orange"><?php echo $t['cat3_tit']; ?></h3>
                         <p><?php echo $t['cat3_desc']; ?></p>
