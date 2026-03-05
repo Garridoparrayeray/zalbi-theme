@@ -38,7 +38,7 @@
             ?>
         </div>
 
-        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
             <i class="fas fa-bars"></i>
         </button>
 

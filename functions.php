@@ -233,4 +233,14 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
     require get_template_directory() . '/inc/jetpack.php';
 }
+
+add_filter( 'style_loader_tag', 'zalbi_async_fonts', 10, 4 );
+function zalbi_async_fonts( $html, $handle, $href, $media ) {
+    // Busca si el enlace es de FontAwesome o de Google Fonts para pagespeed
+    if ( strpos($href, 'font-awesome') !== false || strpos($href, 'fonts.googleapis.com') !== false ) {
+        $html = '<link rel="stylesheet" href="' . esc_url($href) . '" media="print" onload="this.media=\'all\'">' . "\n";
+        $html .= '<noscript><link rel="stylesheet" href="' . esc_url($href) . '"></noscript>' . "\n";
+    }
+    return $html;
+}
 ?>

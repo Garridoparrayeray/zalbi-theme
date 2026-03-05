@@ -109,7 +109,7 @@ if ($es_euskera) {
     $slug_juegos       = 'juegos';
 }
 ?>
-
+<main id="main" class="site-main">
     <section class="hero-home">
       <div class="container">
         <h1><?php echo $t['hero_titulo']; ?></h1>
@@ -134,7 +134,7 @@ if ($es_euskera) {
             <div class="options">
                 
                 <a href="<?php echo zalbi_url_filtro($url_catalogo_base, $slug_hinchables); ?>" class="options-box border-pink">
-                    <img src="https://zalbi.eu/wp-content/uploads/2026/03/caida_libre2.webp" alt="<?php echo $t['cat1_tit']; ?>">
+                    <img src="https://zalbi.eu/wp-content/uploads/2026/03/caida_libre2-e1772653784419.jpeg" alt="<?php echo $t['cat1_tit']; ?>" width="400" height="300" style="object-fit:cover; aspect-ratio:4/3;" loading="lazy">
                     <div class="card-body">
                         <h3 class="text-pink"><?php echo $t['cat1_tit']; ?></h3>
                         <p><?php echo $t['cat1_desc']; ?></p>
@@ -143,7 +143,7 @@ if ($es_euskera) {
                 </a>
 
                 <a href="<?php echo zalbi_url_filtro($url_catalogo_base, $slug_acuaticos); ?>" class="options-box border-blue">
-                    <img src="https://zalbi.eu/wp-content/uploads/2026/01/espuma1.webp" alt="<?php echo $t['cat2_tit']; ?>"> 
+                    <img src="https://zalbi.eu/wp-content/uploads/2026/01/espuma1-e1772653826852.jpeg" alt="<?php echo $t['cat2_tit']; ?>" width="400" height="300" style="object-fit:cover; aspect-ratio:4/3;" loading="lazy"> 
                     <div class="card-body">
                         <h3 class="text-blue"><?php echo $t['cat2_tit']; ?></h3> 
                         <p><?php echo $t['cat2_desc']; ?></p>
@@ -152,7 +152,7 @@ if ($es_euskera) {
                 </a>
 
                 <a href="<?php echo zalbi_url_filtro($url_catalogo_base, $slug_deportivos); ?>" class="options-box border-orange">
-                     <img src="https://zalbi.eu/wp-content/uploads/2026/02/futbolin_1.webp" alt="<?php echo $t['cat3_tit']; ?>">
+                     <img src="https://zalbi.eu/wp-content/uploads/2026/01/futbolin_1-e1772653842452.jpeg" alt="<?php echo $t['cat3_tit']; ?>" width="400" height="300" style="object-fit:cover; aspect-ratio:4/3;" loading="lazy">
                     <div class="card-body">
                         <h3 class="text-orange"><?php echo $t['cat3_tit']; ?></h3>
                         <p><?php echo $t['cat3_desc']; ?></p>
@@ -161,7 +161,7 @@ if ($es_euskera) {
                 </a>
                 
                 <a href="<?php echo zalbi_url_filtro($url_catalogo_base, $slug_juegos); ?>" class="options-box border-purple">
-                    <img src="https://dev-zalbi-aisia-eta-abentura.pantheonsite.io/wp-content/uploads/2026/02/juegos_variados_puestos.jpeg" alt="<?php echo $t['cat5_tit']; ?>">
+                    <img src="https://zalbi.eu/wp-content/uploads/2026/02/juegos_variados_puestos-278x300-2.webp" alt="<?php echo $t['cat5_tit']; ?>" width="400" height="300" style="object-fit:cover; aspect-ratio:4/3;" loading="lazy">
                     <div class="card-body">
                         <h3 class="text-purple"><?php echo $t['cat5_tit']; ?></h3>
                         <p><?php echo $t['cat5_desc']; ?></p>
@@ -170,7 +170,7 @@ if ($es_euskera) {
                 </a>
 
                 <a href="<?php echo $url_eventos; ?>" class="options-box border-green">
-                  <img src="https://dev-zalbi-aisia-eta-abentura.pantheonsite.io/wp-content/uploads/2026/01/eventos_foto.jpeg" alt="<?php echo $t['cat4_tit']; ?>">
+                  <img src="https://zalbi.eu/wp-content/uploads/2026/01/eventos_foto.jpeg" alt="<?php echo $t['cat4_tit']; ?>" width="400" height="300" style="object-fit:cover; aspect-ratio:4/3;" loading="lazy">
                   <div class="card-body">
                         <h3 class="text-green"><?php echo $t['cat4_tit']; ?></h3>
                         <p><?php echo $t['cat4_desc']; ?></p>
@@ -204,5 +204,5 @@ if ($es_euskera) {
             </div>
         </div>
     </section>
-
+</main>
 <?php get_footer(); ?>
