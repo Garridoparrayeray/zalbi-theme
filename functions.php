@@ -243,4 +243,21 @@ function zalbi_async_fonts( $html, $handle, $href, $media ) {
     }
     return $html;
 }
+add_action( 'send_headers', 'zalbi_add_security_headers' );
+function zalbi_add_security_headers() {
+    if ( ! is_admin() ) {
+        // HSTS: Obliga a usar siempre conexiones seguras HTTPS.
+        header( 'Strict-Transport-Security: max-age=31536000; includeSubDomains' );
+        
+        // XFO (X-Frame-Options): Bloquea el "secuestro de clics" evitando que clonen tu web en un iframe.
+        header( 'X-Frame-Options: SAMEORIGIN' );
+        
+        // COOP: Aísla tu web de otras pestañas emergentes maliciosas.
+        header( 'Cross-Origin-Opener-Policy: same-origin' );
+        
+        // Extra de seguridad: Evita que los hackers disfracen archivos maliciosos.
+        header( 'X-Content-Type-Options: nosniff' );
+    }
+}
+
 ?>
