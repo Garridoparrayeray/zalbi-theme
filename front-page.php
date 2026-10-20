@@ -120,7 +120,7 @@ if ($es_euskera) {
 
     <section class="section-pad">
       <div class="container text-center">
-        <h1><?php echo $t['quienes_tit']; ?></h1>
+        <h2 class="about-title"><?php echo $t['quienes_tit']; ?></h2>
         <div class="about-text">
           <p><?php echo $t['quienes_txt']; ?></p>
         </div>

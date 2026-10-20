@@ -56,7 +56,7 @@ if ($es_euskera) {
                             the_custom_logo();
                         } else {
                             ?>
-                            <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
+                            <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
                             <?php
                         }
                         ?>
@@ -99,10 +99,11 @@ if ($es_euskera) {
                         ) );
                     } else {
                         // Fallback manual traducido
+                        // Solo se enlazan páginas publicadas (ver inc/seo.php).
                         echo '<ul class="footer-links">';
-                        echo '<li><a href="' . home_url($url_prefix . '/aviso-legal') . '">' . $link_aviso . '</a></li>';
-                        echo '<li><a href="' . home_url($url_prefix . '/politica-privacidad') . '">' . $link_priv . '</a></li>';
-                        echo '<li><a href="' . home_url($url_prefix . '/politica-cookies') . '">' . $link_cookies . '</a></li>';
+                        foreach ( zalbi_legal_links() as $legal ) {
+                            echo '<li><a href="' . esc_url( $legal['url'] ) . '">' . esc_html( $legal['label'] ) . '</a></li>';
+                        }
                         echo '</ul>';
                     }
                     ?>
@@ -139,10 +140,8 @@ if ( ! empty($whatsapp_number) ) :
 
 <?php endif; ?>
 
-</div><?php wp_footer(); ?>
+<?php wp_footer(); ?>
 
-
-</body>
 <script>
 //script hamburguesa
 document.addEventListener('DOMContentLoaded', function() {
@@ -167,4 +166,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+</body>
 </html>

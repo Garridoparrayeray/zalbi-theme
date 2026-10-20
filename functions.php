@@ -223,6 +223,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
+ * SEO: titles, structured data, hreflang, redirects, legal links.
+ */
+require get_template_directory() . '/inc/seo.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';

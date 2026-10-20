@@ -2034,3 +2034,15 @@ img {
         margin-right: 0 !important;
     }
 }
+
+/* SEO: antes <h1>; ahora <h2>/<p> con el mismo aspecto visual */
+.about-title {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+.site-branding .site-title {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 2em;
+  margin: 0.67em 0;
+}
