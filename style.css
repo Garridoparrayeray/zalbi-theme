@@ -2046,3 +2046,55 @@ img {
   font-size: 2em;
   margin: 0.67em 0;
 }
+
+/* --- Página de contacto --- */
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+  margin: 40px auto 60px;
+}
+.contact-layout .contact-form-col .zalbi-form,
+.contact-layout .contact-form-col .wpcf7 {
+  margin: 0;
+  max-width: none;
+}
+.contact-info-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+.contact-info-card h2 {
+  color: var(--c-purple);
+  margin-top: 0;
+}
+.contact-info-list {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.contact-info-list li {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+.contact-info-list i {
+  color: var(--c-pink);
+  width: 20px;
+  margin-top: 4px;
+  text-align: center;
+}
+.contact-info-list a {
+  text-decoration: underline;
+}
+.contact-area {
+  color: #555;
+}
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
