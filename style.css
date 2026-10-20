@@ -2271,3 +2271,55 @@ img {
   border-radius: 12px;
   font-size: 0.95rem;
 }
+
+/* Contacto en móvil: campos a todo el ancho y menos aire entre ellos */
+.zalbi-form .wpcf7-form-control-wrap {
+  display: block;
+  width: 100%;
+}
+.zalbi-form .wpcf7-form-control-wrap input,
+.zalbi-form .wpcf7-form-control-wrap textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+.zalbi-form .form-group p {
+  margin: 0;
+}
+.zalbi-form label + br {
+  display: none;
+}
+.zalbi-form label {
+  margin-bottom: 6px;
+}
+.zalbi-form .form-group {
+  margin-bottom: 16px;
+}
+@media (max-width: 768px) {
+  .contact-layout {
+    margin: 24px auto 40px;
+  }
+  .contact-layout .contact-form-col .zalbi-form {
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+  .zalbi-form .form-row {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0;
+  }
+  .zalbi-form .form-group.half {
+    width: 100%;
+  }
+  .zalbi-form .wpcf7-submit {
+    width: 100%;
+    padding: 14px 20px;
+  }
+  .contact-info-card {
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+  .contact-info-card a.btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
