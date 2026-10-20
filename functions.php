@@ -125,8 +125,9 @@ function zalbi_scripts() {
     wp_enqueue_script( 'zalbi-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
     
     // Fuentes y Iconos
-    wp_enqueue_style( 'zalbi-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' );
-    wp_enqueue_style( 'zalbi-google-fonts', 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap' );
+    // Alojados en el propio tema (sin peticiones a Google ni a cdnjs).
+    wp_enqueue_style( 'zalbi-fonts', get_template_directory_uri() . '/assets/fonts/fonts.css', array(), _S_VERSION );
+    wp_enqueue_style( 'zalbi-fontawesome', get_template_directory_uri() . '/assets/fontawesome/css/all.min.css', array(), '6.4.0' );
     
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
@@ -228,6 +229,11 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/seo.php';
 
 /**
+ * Rendimiento: miniaturas con carga diferida y tamaños adaptables.
+ */
+require get_template_directory() . '/inc/perf.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
@@ -241,8 +247,8 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 add_filter( 'style_loader_tag', 'zalbi_async_fonts', 10, 4 );
 function zalbi_async_fonts( $html, $handle, $href, $media ) {
-    // Busca si el enlace es de FontAwesome o de Google Fonts para pagespeed
-    if ( strpos($href, 'font-awesome') !== false || strpos($href, 'fonts.googleapis.com') !== false ) {
+    // FontAwesome se carga sin bloquear el pintado (los iconos aparecen al llegar el CSS).
+    if ( 'zalbi-fontawesome' === $handle ) {
         $html = '<link rel="stylesheet" href="' . esc_url($href) . '" media="print" onload="this.media=\'all\'">' . "\n";
         $html .= '<noscript><link rel="stylesheet" href="' . esc_url($href) . '"></noscript>' . "\n";
     }

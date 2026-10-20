@@ -139,7 +139,13 @@
                     <?php if ( $mostrar_capacidad ) : ?>
                     <div class="spec-row">
                         <span><i class="fas fa-users" aria-hidden="true"></i> <?php echo $txt_capacidad; ?></span>
-                        <strong><?php echo esc_html( $capacidad ); ?></strong>
+                        <strong><?php
+                            $cap_txt = trim( wp_strip_all_tags( (string) $capacidad ) );
+                            if ( ctype_digit( $cap_txt ) ) {
+                                $cap_txt .= $es_euskera ? ' haur' : ' niños/as';
+                            }
+                            echo esc_html( $cap_txt );
+                        ?></strong>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -159,13 +165,15 @@
 
             <div class="options" style = "justify-content: center;">
                 <?php
-                $related_args = array(
-                    'post_type' => 'hinchable',
+                // Similares: primero del mismo tipo, rotando según la ficha actual
+                // para que todas las fichas reciban enlaces (ver inc/perf.php).
+                $related_ids = zalbi_related_hinchables( get_the_ID(), 3 );
+                $related     = new WP_Query( array(
+                    'post_type'      => 'hinchable',
+                    'post__in'       => $related_ids ? $related_ids : array( 0 ),
+                    'orderby'        => 'post__in',
                     'posts_per_page' => 3,
-                    'post__not_in' => array(get_the_ID()), 
-                    'orderby' => 'rand'
-                );
-                $related = new WP_Query($related_args);
+                ) );
 
                 if( $related->have_posts() ) {
                     while( $related->have_posts() ) {
@@ -177,7 +185,7 @@
                     
                     <a href="<?php the_permalink(); ?>" class="product-card" style="text-decoration: none; color: inherit; max-width: 300px; margin: 0;">
                         <div style="height: 200px; overflow: hidden;">
-                            <?php the_post_thumbnail('medium', array('style' => 'width:100%; height:100%; object-fit:contain; background: #f0f0f0;')); ?>
+                            <?php the_post_thumbnail('medium', array('style' => 'width:100%; height:100%; object-fit:contain; background: #f0f0f0;', 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 600px) 90vw, 300px')); ?>
                         </div>
                         <div class="card-content" style="padding: 15px;">
                             <span class="card-tag <?php echo $r_tag_color; ?>" style="font-size: 11px;"><?php echo $r_nombre; ?></span>

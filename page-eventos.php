@@ -63,7 +63,7 @@ if ($es_euskera) {
             <article class="product-card">
                  <div style="height: 300px; overflow: hidden;">
                      <a href="<?php the_permalink(); ?>">
-                        <?php the_post_thumbnail('medium_large', ['style' => 'width:100%; height:100%; object-fit:contain; background: #f0f0f0;']); ?>
+                        <?php zalbi_card_thumbnail('medium_large', 3, 'eventos'); ?>
                     </a>
                 </div>
                 <div class="card-content">

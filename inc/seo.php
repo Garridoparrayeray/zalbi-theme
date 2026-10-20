@@ -251,6 +251,40 @@ function zalbi_output_structured_data() {
 				),
 			)
 		);
+
+		// Migas de pan (las mismas que se ven en la página).
+		if ( $is_event ) {
+			$list_label = $eu ? 'Ekitaldiak' : 'Eventos';
+			$list_url   = $eu ? home_url( '/eu/ekitaldiak/' ) : home_url( '/eventos/' );
+		} else {
+			$list_label = $eu ? 'Katalogoa' : 'Catálogo';
+			$list_url   = $eu ? home_url( '/eu/katalogoa/' ) : home_url( '/catalogo/' );
+		}
+
+		$graph[] = array(
+			'@type'           => 'BreadcrumbList',
+			'@id'             => get_permalink( $post ) . '#breadcrumb',
+			'itemListElement' => array(
+				array(
+					'@type'    => 'ListItem',
+					'position' => 1,
+					'name'     => $eu ? 'Hasiera' : 'Inicio',
+					'item'     => $eu ? home_url( '/eu/' ) : home_url( '/' ),
+				),
+				array(
+					'@type'    => 'ListItem',
+					'position' => 2,
+					'name'     => $list_label,
+					'item'     => $list_url,
+				),
+				array(
+					'@type'    => 'ListItem',
+					'position' => 3,
+					'name'     => wp_strip_all_tags( get_the_title( $post ) ),
+					'item'     => get_permalink( $post ),
+				),
+			),
+		);
 	}
 
 	if ( empty( $graph ) ) {
