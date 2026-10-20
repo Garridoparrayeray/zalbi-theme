@@ -2209,3 +2209,65 @@ img {
     max-height: 420px;
   }
 }
+
+/* Contacto: botón de WhatsApp legible y botón de enviar con color en todos los estados */
+.contact-info-card a.btn,
+.contact-info-card a.btn:visited,
+.contact-info-card a.btn:hover {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: normal;
+}
+.contact-info-card a.btn:focus {
+  outline: none;
+}
+.contact-info-card a.btn:focus-visible {
+  outline: 3px solid var(--c-purple);
+  outline-offset: 3px;
+}
+
+.zalbi-form .wpcf7-submit,
+.zalbi-form .wpcf7-submit:focus,
+.zalbi-form .wpcf7-submit:active,
+.zalbi-form .wpcf7-submit:disabled,
+.zalbi-form .wpcf7-submit[disabled],
+.zalbi-form .wpcf7-submit[aria-disabled="true"],
+.zalbi-form .wpcf7-form.submitting .wpcf7-submit,
+.zalbi-form .wpcf7-form.invalid .wpcf7-submit,
+.zalbi-form .wpcf7-form.unaccepted .wpcf7-submit,
+.zalbi-form .wpcf7-form.failed .wpcf7-submit,
+.zalbi-form .wpcf7-form.spam .wpcf7-submit {
+  background: var(--c-pink);
+  background-color: var(--c-pink);
+  color: #fff;
+  border: 0;
+  -webkit-text-fill-color: #fff;
+}
+.zalbi-form .wpcf7-submit:disabled,
+.zalbi-form .wpcf7-submit[disabled],
+.zalbi-form .wpcf7-form.submitting .wpcf7-submit {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Mensajes de validación de Contact Form 7 */
+.zalbi-form .wpcf7-not-valid {
+  border-color: #d63638 !important;
+}
+.zalbi-form .wpcf7-not-valid-tip {
+  color: #d63638;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  display: block;
+}
+.zalbi-form .wpcf7-response-output {
+  margin: 20px 0 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
