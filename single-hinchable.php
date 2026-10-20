@@ -66,7 +66,15 @@
     $contenido_html = apply_filters( 'the_content', get_the_content() );
     $galeria_imgs   = array();
     if ( preg_match_all( '/<img\b[^>]*>/i', $contenido_html, $m_img ) ) {
-        $galeria_imgs = $m_img[0];
+        $alt_titulo = esc_attr( get_the_title() );
+        foreach ( $m_img[0] as $i => $tag ) {
+            if ( preg_match( '/\balt=(["\'])\s*\1/i', $tag ) ) {
+                $tag = preg_replace( '/\balt=(["\'])\s*\1/i', 'alt="' . $alt_titulo . ' - ' . ( $i + 2 ) . '"', $tag );
+            } elseif ( ! preg_match( '/\balt=/i', $tag ) ) {
+                $tag = preg_replace( '/<img\b/i', '<img alt="' . $alt_titulo . ' - ' . ( $i + 2 ) . '"', $tag, 1 );
+            }
+            $galeria_imgs[] = $tag;
+        }
     }
     $contenido_html = preg_replace( '#<figure\b[^>]*>.*?</figure>#is', '', $contenido_html );
     $contenido_html = preg_replace( '/<img\b[^>]*>/i', '', $contenido_html );
