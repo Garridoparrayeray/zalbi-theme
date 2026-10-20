@@ -2323,3 +2323,15 @@ img {
     justify-content: center;
   }
 }
+
+/* Redes sociales en el footer */
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-lime);
+  font-weight: 700;
+}
+.footer-social a:hover {
+  text-decoration: underline;
+}

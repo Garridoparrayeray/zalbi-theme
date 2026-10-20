@@ -36,6 +36,10 @@ function zalbi_business() {
 		'postal' => '48600',
 		'city'   => 'Sopela',
 		'region' => 'Bizkaia',
+		'social' => array(
+			'https://www.instagram.com/zalbi_aisia_abentura/',
+			'https://www.facebook.com/osipark.aisialdirakoekintzak/',
+		),
 	);
 }
 
@@ -216,6 +220,7 @@ function zalbi_output_structured_data() {
 				),
 				'areaServed'    => $area,
 				'knowsLanguage' => array( 'es', 'eu' ),
+				'sameAs'        => $b['social'],
 			)
 		);
 	} elseif ( is_singular( array( 'hinchable', 'evento' ) ) ) {

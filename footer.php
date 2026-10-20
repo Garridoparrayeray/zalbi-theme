@@ -64,6 +64,11 @@ if ($es_euskera) {
                     <p>
                         <?php echo $txt_desc; ?>
                     </p>
+                    <p class="footer-social">
+                        <a href="https://www.instagram.com/zalbi_aisia_abentura/" target="_blank" rel="noopener noreferrer me" aria-label="Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+                        </a>
+                    </p>
                 </div>
 
                 <div class="footer-col">
