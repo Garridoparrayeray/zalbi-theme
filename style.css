@@ -2098,3 +2098,40 @@ img {
     grid-template-columns: 1fr;
   }
 }
+
+/* Contacto: el campo de teléfono (type=tel) y el botón de envío tenían estilo por defecto */
+.zalbi-form input[type="tel"],
+.zalbi-form input[type="url"],
+.zalbi-form input[type="number"],
+.zalbi-form select {
+  width: 100%;
+  box-sizing: border-box;
+  background: #f9f9f9;
+  border: 2px solid #eee;
+  border-radius: 15px;
+  padding: 15px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #555;
+  transition: all 0.3s ease;
+  outline: none;
+}
+.zalbi-form input[type="tel"]:focus {
+  border-color: var(--c-purple);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(48, 43, 112, 0.1);
+}
+.zalbi-form .wpcf7-submit {
+  background: var(--c-pink);
+  color: #fff;
+  border: 0;
+  border-radius: 50px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.zalbi-form .wpcf7-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
