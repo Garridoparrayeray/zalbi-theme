@@ -2188,8 +2188,22 @@ img {
   box-sizing: border-box;
 }
 @media (max-width: 768px) {
+  .product-detail-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
   .product-gallery {
     position: static;
+  }
+  .gallery-thumbs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .cta-box .btn {
+    display: block;
+    width: 100%;
+    white-space: normal;
+    padding: 14px 16px;
+    border-radius: 40px;
   }
   .gallery-main {
     max-height: 420px;
