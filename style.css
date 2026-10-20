@@ -2335,3 +2335,12 @@ img {
 .footer-social a:hover {
   text-decoration: underline;
 }
+
+/* Página 404 */
+.error-404-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin: 40px auto 70px;
+}

@@ -1,60 +1,53 @@
 <?php
 /**
- * The template for displaying 404 pages (not found)
- *
- * @link https://codex.wordpress.org/Creating_an_Error_404_Page
+ * Página 404 (no encontrada), en castellano y euskera.
  *
  * @package zalbi-theme
  */
 
 get_header();
+
+$es_euskera = function_exists( 'zalbi_is_eu' ) ? zalbi_is_eu() : ( function_exists( 'pll_current_language' ) && 'eu' === pll_current_language() );
+
+if ( $es_euskera ) {
+	$t = array(
+		'h1'   => 'Ez dugu orri hau aurkitu',
+		'p'    => 'Baliteke esteka zaharra izatea edo orria aldatu izana. Hemendik jarraitu dezakezu:',
+		'home' => 'Hasiera',
+		'cat'  => 'Katalogoa ikusi',
+		'cont' => 'Kontaktua',
+		'u_h'  => home_url( '/eu/' ),
+		'u_c'  => home_url( '/eu/katalogoa/' ),
+		'u_k'  => home_url( '/eu/kontaktua/' ),
+	);
+} else {
+	$t = array(
+		'h1'   => 'No hemos encontrado esta página',
+		'p'    => 'Puede que el enlace sea antiguo o que la página haya cambiado. Puedes seguir desde aquí:',
+		'home' => 'Ir al inicio',
+		'cat'  => 'Ver el catálogo',
+		'cont' => 'Contacto',
+		'u_h'  => home_url( '/' ),
+		'u_c'  => home_url( '/catalogo/' ),
+		'u_k'  => home_url( '/contacto/' ),
+	);
+}
 ?>
 
-	<main id="primary" class="site-main">
+<main id="primary" class="site-main">
+	<section class="hero-catalog">
+		<div class="container">
+			<h1><?php echo esc_html( $t['h1'] ); ?></h1>
+			<p><?php echo esc_html( $t['p'] ); ?></p>
+		</div>
+	</section>
 
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'zalbi' ); ?></h1>
-			</header><!-- .page-header -->
-
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'zalbi' ); ?></p>
-
-					<?php
-					get_search_form();
-
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'zalbi' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-					/* translators: %1$s: smiley */
-					$zalbi_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'zalbi' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$zalbi_archive_content" );
-
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-			</div><!-- .page-content -->
-		</section><!-- .error-404 -->
-
-	</main><!-- #main -->
+	<div class="container error-404-actions">
+		<a class="btn btn-pink" href="<?php echo esc_url( $t['u_h'] ); ?>"><?php echo esc_html( $t['home'] ); ?></a>
+		<a class="btn btn-outline" href="<?php echo esc_url( $t['u_c'] ); ?>"><?php echo esc_html( $t['cat'] ); ?></a>
+		<a class="btn btn-outline" href="<?php echo esc_url( $t['u_k'] ); ?>"><?php echo esc_html( $t['cont'] ); ?></a>
+	</div>
+</main>
 
 <?php
 get_footer();
