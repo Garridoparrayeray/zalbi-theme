@@ -43,9 +43,9 @@ if ( $es_euskera ) {
 	</section>
 
 	<div class="container error-404-actions">
-		<a class="btn btn-pink" href="<?php echo esc_url( $t['u_h'] ); ?>"><?php echo esc_html( $t['home'] ); ?></a>
-		<a class="btn btn-outline" href="<?php echo esc_url( $t['u_c'] ); ?>"><?php echo esc_html( $t['cat'] ); ?></a>
-		<a class="btn btn-outline" href="<?php echo esc_url( $t['u_k'] ); ?>"><?php echo esc_html( $t['cont'] ); ?></a>
+		<a class="btn" href="<?php echo esc_url( $t['u_h'] ); ?>"><?php echo esc_html( $t['home'] ); ?></a>
+		<a class="btn" href="<?php echo esc_url( $t['u_c'] ); ?>"><?php echo esc_html( $t['cat'] ); ?></a>
+		<a class="btn" href="<?php echo esc_url( $t['u_k'] ); ?>"><?php echo esc_html( $t['cont'] ); ?></a>
 	</div>
 </main>
 

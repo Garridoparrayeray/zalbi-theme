@@ -1139,7 +1139,6 @@ img {
 .main-navigation ul li a:hover {
   background-color: var(--c-pink);
   border-color: var(--c-pink);
-  transform: translateY(-3px); /* El botón "sube" un poco */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* La sombra crece */
 }
 /* Botón Hamburguesa (Oculto en escritorio) */
@@ -1170,7 +1169,6 @@ img {
 }
 
 .btn-pink:hover {
-  transform: translateY(-3px);
   background: #c20061;
 }
 
@@ -1236,7 +1234,6 @@ img {
 }
 
 .client-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
@@ -1273,7 +1270,6 @@ img {
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -1565,7 +1561,6 @@ img {
     width: 800px;
 }
 .options-box:hover{
-    transform: translateY(-10px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 .section-events{
@@ -1641,7 +1636,6 @@ img {
 /* Efecto al pasar el ratón por encima */
 .whatsapp-btn:hover {
     background-color: #128C7E; /* Se oscurece un poco */
-    transform: scale(1.1);     /* Se hace un 10% más grande */
     cursor: pointer;
 }
 
@@ -2129,11 +2123,9 @@ img {
   font-family: var(--font-head);
   font-weight: 800;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 .zalbi-form .wpcf7-submit:hover {
   opacity: 0.9;
-  transform: translateY(-1px);
 }
 
 /* --- Ficha de producto: galería, ancho y datos vacíos --- */
@@ -2343,4 +2335,59 @@ img {
   gap: 14px;
   justify-content: center;
   margin: 40px auto 70px;
+}
+
+/* Sin animaciones al pasar el ratón: solo cambia el color, nada se mueve ni se anima */
+a,
+.btn,
+.main-navigation ul li a,
+.client-card,
+.product-card,
+.options-box,
+.footer-links a,
+.whatsapp-btn,
+.zalbi-form .wpcf7-submit,
+.gallery-thumb {
+  transition: none;
+}
+.btn:hover,
+.btn-pink:hover,
+.main-navigation ul li a:hover,
+.client-card:hover,
+.product-card:hover,
+.options-box:hover,
+.whatsapp-btn:hover,
+.zalbi-form .wpcf7-submit:hover {
+  transform: none;
+}
+
+/* El footer siempre al final de la ventana, también en páginas cortas */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body > .site-footer {
+  margin-top: auto;
+}
+
+/* Página 404: botones con el mismo tamaño y estilo */
+.error-404-actions .btn {
+  box-sizing: border-box;
+  min-width: 190px;
+  text-align: center;
+  padding: 12px 28px;
+  border: 2px solid var(--c-purple);
+  background: transparent;
+  color: var(--c-purple);
+  box-shadow: none;
+}
+.error-404-actions .btn:first-child {
+  background: var(--c-purple);
+  color: #fff;
+}
+.error-404-actions .btn:hover {
+  background: var(--c-pink);
+  border-color: var(--c-pink);
+  color: #fff;
 }
