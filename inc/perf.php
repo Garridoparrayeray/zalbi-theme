@@ -28,6 +28,11 @@ function zalbi_card_thumbnail( $size = 'medium_large', $eager = 0, $group = 'car
 		'sizes'    => '(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px',
 	);
 
+	if ( $is_eager ) {
+		// LiteSpeed Cache no debe aplazar las imágenes visibles al abrir la página.
+		$attr['data-no-lazy'] = '1';
+	}
+
 	if ( $is_eager && 1 === $count[ $group ] ) {
 		$attr['fetchpriority'] = 'high';
 	}
@@ -110,3 +115,32 @@ function zalbi_related_hinchables( $post_id, $limit = 3 ) {
 	$result = array_merge( $cycle( $same ), $cycle( $all ) );
 	return array_slice( array_values( array_unique( $result ) ), 0, $limit );
 }
+
+/**
+ * Quita el script de emojis de WordPress (una petición a s.w.org y JS que el
+ * sitio no usa). Los emojis siguen viéndose con las fuentes del sistema.
+ */
+function zalbi_disable_emoji_scripts() {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+}
+add_action( 'init', 'zalbi_disable_emoji_scripts' );
+
+add_filter(
+	'wp_resource_hints',
+	function ( $urls, $relation ) {
+		if ( 'dns-prefetch' === $relation ) {
+			$urls = array_filter(
+				$urls,
+				function ( $url ) {
+					return false === strpos( is_array( $url ) ? ( $url['href'] ?? '' ) : (string) $url, 's.w.org' );
+				}
+			);
+		}
+		return $urls;
+	},
+	10,
+	2
+);
