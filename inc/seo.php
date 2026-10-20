@@ -372,6 +372,10 @@ function zalbi_find_page_url( $slugs, $lang ) {
 		$found = get_posts( $args );
 
 		if ( ! empty( $found ) ) {
+			// Polylang: no enlazar una página que esté en otro idioma.
+			if ( function_exists( 'pll_get_post_language' ) && pll_get_post_language( $found[0]->ID ) !== $lang ) {
+				continue;
+			}
 			return get_permalink( $found[0] );
 		}
 	}
