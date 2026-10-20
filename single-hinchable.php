@@ -62,6 +62,24 @@
         $url_contacto = home_url('/contacto');
     }
     
+    // Imágenes metidas en la descripción: pasan a la galería (columna izquierda).
+    $contenido_html = apply_filters( 'the_content', get_the_content() );
+    $galeria_imgs   = array();
+    if ( preg_match_all( '/<img\b[^>]*>/i', $contenido_html, $m_img ) ) {
+        $galeria_imgs = $m_img[0];
+    }
+    $contenido_html = preg_replace( '#<figure\b[^>]*>.*?</figure>#is', '', $contenido_html );
+    $contenido_html = preg_replace( '/<img\b[^>]*>/i', '', $contenido_html );
+    $contenido_html = preg_replace( '#<p>(\s|&nbsp;|<br\s*/?>)*</p>#i', '', $contenido_html );
+
+    // Datos de la ficha: se ocultan si están vacíos o son de relleno.
+    $es_dato_valido = function ( $v ) {
+        $v = trim( wp_strip_all_tags( (string) $v ) );
+        return '' !== $v && ! in_array( mb_strtolower( $v ), array( 'sin determinar', 'zehaztu gabe', '-', 'n/a' ), true );
+    };
+    $mostrar_medidas   = $es_dato_valido( $medidas );
+    $mostrar_capacidad = $es_dato_valido( $capacidad );
+
     $nombre_categoria_visual = isset($nombres_visuales[$tag_color]) ? $nombres_visuales[$tag_color] : $texto_defecto;
 ?>
 
@@ -74,12 +92,20 @@
 
         <div class="product-detail-layout">
             
-            <div>
-                <?php if ( has_post_thumbnail() ) { 
-                    the_post_thumbnail('large', array('class' => 'gallery-main')); 
+            <div class="product-gallery">
+                <?php if ( has_post_thumbnail() ) {
+                    the_post_thumbnail( 'large', array( 'class' => 'gallery-main', 'id' => 'gallery-main-img' ) );
                 } else { ?>
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/logo.webp" class="gallery-main" style="background:#eee;">
+                    <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/logo.webp" alt="<?php echo esc_attr( get_the_title() ); ?>" class="gallery-main" id="gallery-main-img" style="background:#eee;">
                 <?php } ?>
+
+                <?php if ( ! empty( $galeria_imgs ) ) : ?>
+                    <div class="gallery-thumbs" id="gallery-thumbs">
+                        <?php foreach ( $galeria_imgs as $img_html ) {
+                            echo '<button type="button" class="gallery-thumb">' . $img_html . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                        } ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div>
@@ -88,26 +114,32 @@
                 <span class="card-tag <?php echo $tag_color; ?>"><?php echo $txt_categoria; ?>: <?php echo $nombre_categoria_visual; ?></span>
                 
                 <div class="product-desc" style="margin-top: 20px;">
-                    <?php the_content(); ?>
+                    <?php echo $contenido_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 </div>
 
+                <?php if ( $mostrar_medidas || $mostrar_capacidad ) : ?>
                 <div class="spec-box">
-                    <h3><?php echo $txt_ficha; ?></h3>
-                    
+                    <h2 class="spec-title"><?php echo $txt_ficha; ?></h2>
+
+                    <?php if ( $mostrar_medidas ) : ?>
                     <div class="spec-row">
-                        <span><i class="fas fa-ruler-combined"></i> <?php echo $txt_medidas; ?></span>
-                        <strong><?php echo $medidas; ?></strong>
+                        <span><i class="fas fa-ruler-combined" aria-hidden="true"></i> <?php echo $txt_medidas; ?></span>
+                        <strong><?php echo esc_html( $medidas ); ?></strong>
                     </div>
-                    
+                    <?php endif; ?>
+
+                    <?php if ( $mostrar_capacidad ) : ?>
                     <div class="spec-row">
-                        <span><i class="fas fa-users"></i> <?php echo $txt_capacidad; ?></span>
-                        <strong><?php echo $capacidad; ?></strong>
+                        <span><i class="fas fa-users" aria-hidden="true"></i> <?php echo $txt_capacidad; ?></span>
+                        <strong><?php echo esc_html( $capacidad ); ?></strong>
                     </div>
+                    <?php endif; ?>
                 </div>
+                <?php endif; ?>
 
                 <div class="cta-box">
                     <p style="margin-bottom: 10px; font-weight: bold;"><?php echo $txt_interesa; ?></p>
-                    <a href="<?php echo $url_contacto; ?>" class="btn" style="background: var(--c-lime); color: var(--c-purple); width: 100%;"><?php echo $txt_btn_presu; ?></a>
+                    <a href="<?php echo esc_url( add_query_arg( 'modelo', rawurlencode( get_the_title() ), $url_contacto ) ); ?>" class="btn" style="background: var(--c-lime); color: var(--c-purple); width: 100%;"><?php echo $txt_btn_presu; ?></a>
                 </div>
             </div>
         </div>
@@ -154,6 +186,25 @@
             </div>
         </div>
     </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var main = document.getElementById('gallery-main-img');
+    var thumbs = document.querySelectorAll('#gallery-thumbs .gallery-thumb img');
+    if (!main || !thumbs.length) { return; }
+    thumbs.forEach(function (t) {
+        t.parentNode.addEventListener('click', function () {
+            var prev = main.currentSrc || main.src;
+            main.removeAttribute('srcset');
+            main.removeAttribute('sizes');
+            main.src = t.currentSrc || t.src;
+            t.removeAttribute('srcset');
+            t.removeAttribute('sizes');
+            t.src = prev;
+        });
+    });
+});
+</script>
 
 <?php endwhile; ?>
 

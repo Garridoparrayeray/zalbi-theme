@@ -76,4 +76,17 @@ $t = $es_euskera ? array(
 </main>
 
 <?php
+// Si se llega desde una ficha (?modelo=Nombre), se rellena el mensaje.
+$modelo = isset( $_GET['modelo'] ) ? sanitize_text_field( wp_unslash( $_GET['modelo'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+if ( '' !== $modelo ) :
+	$prefill = ( $es_euskera ? 'Kaixo, honako eredua interesatzen zait: ' : 'Hola, me interesa el modelo: ' ) . $modelo . '. ';
+	?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var ta = document.querySelector('.contact-form-col textarea');
+    if (ta && !ta.value) { ta.value = <?php echo wp_json_encode( $prefill ); ?>; }
+});
+</script>
+<?php endif; ?>
+<?php
 get_footer();

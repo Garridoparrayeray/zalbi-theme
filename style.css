@@ -2135,3 +2135,63 @@ img {
   opacity: 0.9;
   transform: translateY(-1px);
 }
+
+/* --- Ficha de producto: galería, ancho y datos vacíos --- */
+.product-detail-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+}
+.product-gallery {
+  position: sticky;
+  top: 100px;
+}
+.gallery-main {
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  background: #fff;
+}
+.gallery-thumbs {
+  margin-top: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+}
+.gallery-thumb {
+  padding: 0;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  aspect-ratio: 1 / 1;
+}
+.gallery-thumb:hover,
+.gallery-thumb:focus-visible {
+  border-color: var(--c-purple);
+}
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  box-shadow: none;
+}
+.spec-title {
+  font-size: 1.1rem;
+  margin: 0 0 10px;
+}
+.cta-box {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.cta-box .btn {
+  box-sizing: border-box;
+}
+@media (max-width: 768px) {
+  .product-gallery {
+    position: static;
+  }
+  .gallery-main {
+    max-height: 420px;
+  }
+}
