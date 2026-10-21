@@ -30,6 +30,7 @@ function zalbi_is_eu() {
 function zalbi_business() {
 	return array(
 		'name'   => 'Zalbi Aisia eta Abentura',
+		'short'  => 'Zalbi',
 		'phone'  => '+34658887358',
 		'email'  => 'aritzzalbidea@yahoo.es',
 		'street' => 'Telleri 11-A',
@@ -51,13 +52,13 @@ function zalbi_business() {
 function zalbi_home_meta() {
 	if ( zalbi_is_eu() ) {
 		return array(
-			'title'       => 'Puzgarrien alokairua Bizkaian | Zalbi Aisia',
+			'title'       => 'Puzgarrien alokairua Bizkaian | Zalbi',
 			'description' => 'Sopelako enpresa: puzgarriak, uretako atrakzioak eta jokoak alokatzen ditugu Bizkaian eta Euskadin. 15 urte baino gehiagoko esperientzia. Aurrekontua konpromisorik gabe.',
 		);
 	}
 
 	return array(
-		'title'       => 'Alquiler de hinchables en Bizkaia | Zalbi Aisia',
+		'title'       => 'Alquiler de hinchables en Bizkaia | Zalbi',
 		'description' => 'Empresa de Sopela: alquiler de hinchables, juegos y atracciones acuáticas en Bizkaia y Euskadi. Más de 15 años de experiencia. Presupuesto sin compromiso.',
 	);
 }
@@ -99,7 +100,7 @@ function zalbi_filter_seo_title( $title ) {
 				$suffix = $is_event ? 'animación y eventos en Bizkaia' : 'alquiler en Bizkaia';
 			}
 
-			return $post_title . ': ' . $suffix . ' | Zalbi Aisia';
+			return $post_title . ': ' . $suffix . ' | Zalbi';
 		}
 	}
 
@@ -205,6 +206,7 @@ function zalbi_output_structured_data() {
 				'@type'         => 'EntertainmentBusiness',
 				'@id'           => $business_id,
 				'name'          => $b['name'],
+				'alternateName' => $b['short'],
 				'url'           => home_url( '/' ),
 				'description'   => $meta['description'],
 				'image'         => $logo,
