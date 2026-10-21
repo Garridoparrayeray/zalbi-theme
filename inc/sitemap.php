@@ -49,6 +49,28 @@ function zalbi_serve_sitemap() {
 	echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 	echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' . "\n";
 
+	// Portadas (no son entradas de WordPress): una por idioma, con sus alternativas.
+	$homes = array();
+	if ( function_exists( 'pll_languages_list' ) && function_exists( 'pll_home_url' ) ) {
+		foreach ( pll_languages_list() as $lang ) {
+			$homes[ $lang ] = pll_home_url( $lang );
+		}
+	} else {
+		$homes[''] = home_url( '/' );
+	}
+
+	foreach ( $homes as $lang => $home_url ) {
+		echo "\t<url>\n";
+		echo "\t\t<loc>" . esc_xml( $home_url ) . "</loc>\n";
+		echo "\t\t<lastmod>" . esc_xml( gmdate( 'c' ) ) . "</lastmod>\n";
+		if ( count( $homes ) > 1 ) {
+			foreach ( $homes as $alt_lang => $alt_url ) {
+				echo "\t\t" . '<xhtml:link rel="alternate" hreflang="' . esc_attr( $alt_lang ) . '" href="' . esc_url( $alt_url ) . '" />' . "\n";
+			}
+		}
+		echo "\t</url>\n";
+	}
+
 	foreach ( $posts as $p ) {
 		$url = get_permalink( $p );
 		if ( ! $url ) {
