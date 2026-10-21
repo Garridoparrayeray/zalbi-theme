@@ -234,6 +234,11 @@ require get_template_directory() . '/inc/seo.php';
 require get_template_directory() . '/inc/perf.php';
 
 /**
+ * Sitemap propio (/sitemap-zalbi.xml).
+ */
+require get_template_directory() . '/inc/sitemap.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
