@@ -51,14 +51,14 @@ function zalbi_business() {
 function zalbi_home_meta() {
 	if ( zalbi_is_eu() ) {
 		return array(
-			'title'       => 'Puzgarrien alokairua Bizkaian | Zalbi Aisia (Sopela)',
-			'description' => 'Puzgarriak, uretako atrakzioak eta jokoak alokatzen ditugu Bizkaian eta Euskadin. 15 urte baino gehiagoko esperientzia. Aurrekontua konpromisorik gabe.',
+			'title'       => 'Puzgarrien alokairua Bizkaian | Zalbi Aisia',
+			'description' => 'Sopelako enpresa: puzgarriak, uretako atrakzioak eta jokoak alokatzen ditugu Bizkaian eta Euskadin. 15 urte baino gehiagoko esperientzia. Aurrekontua konpromisorik gabe.',
 		);
 	}
 
 	return array(
-		'title'       => 'Alquiler de hinchables en Bizkaia | Zalbi Aisia (Sopela)',
-		'description' => 'Alquiler de hinchables, juegos y atracciones acuáticas en Bizkaia y Euskadi. Más de 15 años de experiencia. Presupuesto sin compromiso.',
+		'title'       => 'Alquiler de hinchables en Bizkaia | Zalbi Aisia',
+		'description' => 'Empresa de Sopela: alquiler de hinchables, juegos y atracciones acuáticas en Bizkaia y Euskadi. Más de 15 años de experiencia. Presupuesto sin compromiso.',
 	);
 }
 
