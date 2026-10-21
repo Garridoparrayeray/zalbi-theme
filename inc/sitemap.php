@@ -37,7 +37,8 @@ function zalbi_serve_sitemap() {
 			'orderby'          => 'post_type title',
 			'order'            => 'ASC',
 			'post__not_in'     => $exclude,
-			'suppress_filters' => true, // Todos los idiomas.
+			'suppress_filters' => true,
+			'lang'             => '', // Polylang: todos los idiomas.
 		)
 	);
 
