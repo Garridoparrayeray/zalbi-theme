@@ -85,6 +85,13 @@ function zalbi_filter_seo_title( $title ) {
 		return $meta['title'];
 	}
 
+	// Catálogo (página hecha en PHP): título fijo por idioma.
+	if ( is_page( array( 'catalogo', 'katalogoa' ) ) ) {
+		return zalbi_is_eu()
+			? 'Puzgarrien eta jokoen katalogoa Bizkaian | Zalbi'
+			: 'Catálogo de hinchables y juegos en Bizkaia | Zalbi';
+	}
+
 	if ( is_singular( array( 'hinchable', 'evento' ) ) ) {
 		$post_title = wp_strip_all_tags( get_the_title() );
 		$site       = get_bloginfo( 'name' );
@@ -104,7 +111,8 @@ function zalbi_filter_seo_title( $title ) {
 		}
 	}
 
-	return $title;
+	// Marca corta coherente: los títulos escritos a mano en AIOSEO acaban en "| Zalbi".
+	return preg_replace( '/\s*[|\-\x{2013}\x{2014}]\s*Zalbi Aisia\s*$/u', ' | Zalbi', (string) $title );
 }
 add_filter( 'aioseo_title', 'zalbi_filter_seo_title', 20 );
 
